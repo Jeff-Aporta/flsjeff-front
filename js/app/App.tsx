@@ -72,6 +72,26 @@
         })));
   }
 
+  function LoginGate(props: { children: any }) {
+    const [ok, setOk] = React.useState(w.FLS.Auth.isLoggedIn());
+    React.useEffect(() => {
+      const f = () => setOk(w.FLS.Auth.isLoggedIn());
+      window.addEventListener(w.FLS.Auth.EVENT, f);
+      window.addEventListener("storage", f);
+      return () => { window.removeEventListener(w.FLS.Auth.EVENT, f); window.removeEventListener("storage", f); };
+    }, []);
+    if (!ok) {
+      return React.createElement(MUI.Paper, { sx: { p: 4, maxWidth: 480, mx: "auto", mt: 6, textAlign: "center" } },
+        React.createElement(UI.Icon, { icon: "mdi:shield-lock-outline", size: 48 }),
+        React.createElement(MUI.Typography, { variant: "h6", sx: { mt: 2 } }, "Inicia sesión"),
+        React.createElement(MUI.Typography, { variant: "body2", color: "text.secondary", sx: { my: 2 } },
+          "flsjeff usa el login centralizado (LangLab / PatyIA)."),
+        React.createElement(MUI.Button, { variant: "contained", href: w.FLS.Auth.LOGIN_URL, target: "_blank", rel: "noreferrer" }, "Ir a System Login"),
+        React.createElement(MUI.Button, { sx: { ml: 1 }, onClick: () => setOk(w.FLS.Auth.isLoggedIn()) }, "Ya inicié sesión"));
+    }
+    return props.children;
+  }
+
   function App() {
     const tm = w.FLS.Theme.useThemeMode();
     const theme = React.useMemo(() => w.FLS.Theme.makeTheme(tm.mode), [tm.mode]);
@@ -85,29 +105,37 @@
     }
     React.useEffect(reload, [tab]);
 
+    const gallery = loading
+      ? React.createElement(MUI.Box, { sx: { display: "flex", justifyContent: "center", p: 4 } }, React.createElement(MUI.CircularProgress, null))
+      : !items.length
+        ? React.createElement(MUI.Alert, { severity: "info" }, "Aún no hay " + (tab === "image" ? "imágenes" : "archivos") + ".")
+        : React.createElement(MUI.Grid, { container: true, spacing: 2 },
+            items.map((it: any) => React.createElement(MUI.Grid, { item: true, xs: 12, sm: 6, md: 4, lg: 3, key: it.id },
+              React.createElement(MetaCard, it))));
+
+    const panel = React.createElement(MUI.Fragment, null,
+      React.createElement(MUI.Tabs, { value: tab, onChange: (_e: any, v: any) => setTab(v), sx: { mb: 2 } },
+        React.createElement(MUI.Tab, { value: "image", label: "Imágenes", icon: React.createElement(UI.Icon, { icon: "mdi:image-multiple-outline" }), iconPosition: "start" }),
+        React.createElement(MUI.Tab, { value: "file", label: "Archivos", icon: React.createElement(UI.Icon, { icon: "mdi:file-multiple-outline" }), iconPosition: "start" })),
+      React.createElement(MUI.Box, { sx: { mb: 3 } }, React.createElement(Uploader, { kind: tab, onDone: reload })),
+      gallery);
+
     return React.createElement(MUI.ThemeProvider, { theme },
       React.createElement(MUI.CssBaseline, null),
-      React.createElement(MUI.AppBar, { position: "static", color: "default", elevation: 0, sx: { borderBottom: 1, borderColor: "divider" } },
-        React.createElement(MUI.Toolbar, { sx: { gap: 1 } },
-          React.createElement(UI.Icon, { icon: "mdi:cloud-upload-outline", size: 26 }),
-          React.createElement(MUI.Typography, { variant: "h6", sx: { flexGrow: 1 } }, "jeffimgbb"),
-          React.createElement(UI.TargetSwitch, null),
-          React.createElement(MUI.Tooltip, { title: "Recargar" },
-            React.createElement(MUI.IconButton, { size: "small", color: "inherit", onClick: reload },
-              React.createElement(UI.Icon, { icon: "mdi:refresh" }))),
-          React.createElement(UI.ThemeSwitch, { mode: tm.mode, onToggle: tm.toggle }))),
-      React.createElement(MUI.Container, { sx: { py: 3 } },
-        React.createElement(MUI.Tabs, { value: tab, onChange: (_e: any, v: any) => setTab(v), sx: { mb: 2 } },
-          React.createElement(MUI.Tab, { value: "image", label: "Imágenes", icon: React.createElement(UI.Icon, { icon: "mdi:image-multiple-outline" }), iconPosition: "start" }),
-          React.createElement(MUI.Tab, { value: "file", label: "Archivos", icon: React.createElement(UI.Icon, { icon: "mdi:file-multiple-outline" }), iconPosition: "start" })),
-        React.createElement(MUI.Box, { sx: { mb: 3 } }, React.createElement(Uploader, { kind: tab, onDone: reload })),
-        loading
-          ? React.createElement(MUI.Box, { sx: { display: "flex", justifyContent: "center", p: 4 } }, React.createElement(MUI.CircularProgress, null))
-          : !items.length
-            ? React.createElement(MUI.Alert, { severity: "info" }, "Aún no hay " + (tab === "image" ? "imágenes" : "archivos") + ".")
-            : React.createElement(MUI.Grid, { container: true, spacing: 2 },
-                items.map((it: any) => React.createElement(MUI.Grid, { item: true, xs: 12, sm: 6, md: 4, lg: 3, key: it.id },
-                  React.createElement(MetaCard, it))))));
+      React.createElement(MUI.Box, { sx: { height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" } },
+        React.createElement(MUI.AppBar, { position: "static", color: "default", elevation: 0, sx: { borderBottom: 1, borderColor: "divider", flexShrink: 0 } },
+          React.createElement(MUI.Toolbar, { sx: { gap: 1 } },
+            React.createElement(UI.Icon, { icon: "mdi:cloud-upload-outline", size: 26 }),
+            React.createElement(MUI.Typography, { variant: "h6", sx: { flexGrow: 1 } }, "jeffimgbb"),
+            w.FLS.Auth.isLoggedIn() && React.createElement(MUI.Chip, { size: "small", label: w.FLS.Auth.username(), variant: "outlined" }),
+            React.createElement(UI.TargetSwitch, null),
+            React.createElement(MUI.Tooltip, { title: "Recargar" },
+              React.createElement(MUI.IconButton, { size: "small", color: "inherit", onClick: reload },
+                React.createElement(UI.Icon, { icon: "mdi:refresh" }))),
+            React.createElement(UI.ThemeSwitch, { mode: tm.mode, onToggle: tm.toggle }))),
+        React.createElement(MUI.Box, { sx: { flex: 1, minHeight: 0, overflow: "auto" } },
+          React.createElement(MUI.Container, { sx: { py: 3 } },
+            React.createElement(LoginGate, null, panel)))));
   }
 
   w.FLS = w.FLS || {};

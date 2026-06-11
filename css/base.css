@@ -1,6 +1,15 @@
 /* base — layout y scrollbars dodgerblue (el tema lo maneja MUI). */
-html, body, #root { height: 100%; }
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
 body { margin: 0; font-family: "IBM Plex Sans", system-ui, sans-serif; }
+#root {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
 .dropzone {
   border: 2px dashed rgba(30, 144, 255, 0.6);

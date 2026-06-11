@@ -17,6 +17,10 @@ Interfaz estática tipo **imgbb** para **subir imágenes y archivos**, explorar 
 
 **https://jeff-aporta.github.io/flsjeff-front/**
 
+## Vista previa
+
+![LoginGate y shell jeffimgbb](./docs/gh-pages.png)
+
 ## Qué hace
 
 - **Drag & drop** o selector de archivos para subir a R2 vía Worker.

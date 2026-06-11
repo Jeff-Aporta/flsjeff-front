@@ -5,6 +5,7 @@ declare const Babel: { transform(code: string, opts: unknown): { code: string } 
   "use strict";
   const FILES = [
     "js/core/config.ts",
+    "js/core/auth.ts",
     "js/api/client.ts",
     "js/ui/theme.tsx",
     "js/ui/widgets.tsx",
