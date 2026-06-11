@@ -1,49 +1,50 @@
-# jeffimgbb — Front (flsjeff)
+# flsjeff-front
 
-UI estática tipo imgbb para subir imágenes/archivos y ver la galería con metadatos. Consume la **API flsjeff** (Cloudflare Worker, repo aparte). Se publica en **GitHub Pages**.
+UI estática tipo **imgbb** para subir imágenes y archivos, ver la galería con metadatos y copiar URLs. Consume la API **[flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back)** (Cloudflare Worker). Publicada en **GitHub Pages**.
 
-> Repo **público**. Sin build: React + MUI por UMD y Babel standalone transpila el código TypeScript en el navegador.
+**Demo:** https://jeff-aporta.github.io/flsjeff-front/
 
 ## Stack
 
-- React 18 + MUI 5 (UMD) + Emotion
-- Babel standalone (transpila `.ts`/`.tsx` en el navegador)
-- Tema **dark/light** en tonos **dodgerblue**, con switch persistido
-- Switch **local/online** para apuntar a `localhost:8787` (wrangler dev) o al Worker publicado
+| Capa | Tecnología |
+|------|------------|
+| UI | React 18 + MUI 5 (UMD) + Emotion |
+| Transpilación | Babel standalone (`.ts`/`.tsx` en el navegador, sin build) |
+| Tema | Dark/light en tonos dodgerblue, persistido en `localStorage` |
+| API | Switch local (`localhost:8787`) / online (`flsjeff.jeffaporta.workers.dev`) |
 
 ## Estructura
 
 ```
 front/
-├── index.html            # stack UMD + bootstrap que arranca js/boot/loader.ts
+├── index.html
 ├── css/base.css
-└── js/                   # todo .ts/.tsx
-    ├── boot/loader.ts    # transpila y carga los módulos en orden
-    ├── core/config.ts    # base de la API + switch local/online
-    ├── api/client.ts     # uploadImage / uploadFile / list
-    ├── ui/  theme.tsx · widgets.tsx
-    └── app/App.tsx        # tabs Imágenes/Archivos, dropzone, galería con metadatos
+└── js/
+    ├── boot/loader.ts
+    ├── core/config.ts    # URL de la API
+    ├── api/client.ts
+    ├── ui/theme.tsx · widgets.tsx
+    └── app/App.tsx
 ```
 
-## Configurar la API
-
-Edita `js/core/config.ts` y pon en `ONLINE` la URL del Worker publicado:
-```
-const ONLINE = "https://flsjeff.<tu-subdominio>.workers.dev";
-```
-
-## Local
+## Desarrollo local
 
 ```bash
-npx serve front      # http://localhost:3000 ; activa el switch "local" si corres el Worker en :8787
+npx serve front      # http://localhost:3000
+# Activa el switch "local" si corres el Worker con wrangler dev en :8787
 ```
 
-## Publicar en GitHub Pages
+## Publicación
 
-Pages → Source: rama `main`, carpeta raíz (`/`). Incluye `.nojekyll`. La app queda en `https://<usuario>.github.io/<repo>/`.
+GitHub Pages → rama `main`, carpeta raíz. Incluye `.nojekyll`.
 
-## Uso
+## Repos relacionados
 
-1. Pestaña **Imágenes** o **Archivos**.
-2. Arrastra o haz clic para subir (múltiple).
-3. La galería muestra cada elemento con su **peso, dimensiones, extensión y URL** (con botón de copiar).
+| Repo | Rol |
+|------|-----|
+| [flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back) | API serverless (privado) |
+| [flsjeff-front](https://github.com/Jeff-Aporta/flsjeff-front) | Este front (público) |
+
+## Licencia
+
+MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
