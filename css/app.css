@@ -1,0 +1,11 @@
+.dropzone {
+  border: 2px dashed rgba(30, 144, 255, 0.6);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.dropzone.drag { background: rgba(30, 144, 255, 0.12); border-color: #1e90ff; }
+
+.meta-mono { font-family: Consolas, monospace; font-size: 0.8rem; word-break: break-all; }

@@ -26,7 +26,7 @@ Interfaz estática tipo **imgbb** para **subir imágenes y archivos**, explorar 
 - **Drag & drop** o selector de archivos para subir a R2 vía Worker.
 - **Galería** con vista previa de imágenes y metadatos técnicos.
 - **Copiar URL** al portapapeles con un clic.
-- **Tema** dark/light persistido y toggle **local :8787 / online**.
+- **Tema** dark/light persistido y toggle **local :8782 / online**.
 - Layout **sin scroll en body**: scroll solo en paneles internos.
 
 ## Desarrollo local
