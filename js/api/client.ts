@@ -1,9 +1,18 @@
-/* api/client — cliente HTTP de la API flsjeff (upload imágenes/archivos, lista, metadatos). */
+/* api/client — flsjeff vía gateway (/api/images, /api/list, /raw/…). */
 
-interface UploadResult { ok: boolean; data?: any; error?: string; }
+interface UploadResult { ok: boolean; data?: FlsFileItem; error?: string; }
 
 (function () {
   "use strict";
+
+  function gwBase() {
+    return window.FLS.Config.base();
+  }
+
+  function normalizeItem(item: FlsFileItem): FlsFileItem {
+    const rw = window.ISAFront?.rewriteFlsItem;
+    return rw ? rw(item, gwBase()) : item;
+  }
 
   async function upload(kind: "images" | "files", file: File, title?: string): Promise<FlsFileItem> {
     const fd = new FormData();
@@ -12,7 +21,7 @@ interface UploadResult { ok: boolean; data?: any; error?: string; }
     const res = await fetch(window.FLS.Config.apiUrl("/api/" + kind), { method: "POST", body: fd });
     const data = (await res.json().catch(() => null)) as UploadResult | null;
     if (!res.ok || !data || !data.ok) throw new Error((data && data.error) || ("HTTP " + res.status));
-    return data.data as FlsFileItem;
+    return normalizeItem(data.data as FlsFileItem);
   }
 
   async function list(kind?: "image" | "file", limit = 60): Promise<FlsFileItem[]> {
@@ -20,7 +29,7 @@ interface UploadResult { ok: boolean; data?: any; error?: string; }
     const res = await fetch(window.FLS.Config.apiUrl("/api/list" + qs));
     const data = await res.json().catch(() => null) as { ok?: boolean; error?: string; rows?: FlsFileItem[] } | null;
     if (!res.ok || !data || !data.ok) throw new Error((data && data.error) || ("HTTP " + res.status));
-    return data.rows || [];
+    return (data.rows || []).map(normalizeItem);
   }
 
   window.FLS = window.FLS || ({} as FlsNs);

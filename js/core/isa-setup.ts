@@ -1,14 +1,8 @@
-/* Registro ISAFront — config, auth, tema, widgets (jsDelivr). */
+/* Registro ISAFront — API vía main-orchestrator (URL en front-shared/constants.js). */
 (function () {
   "use strict";
   window.ISAFront.registerApp({
     ns: "FLS",
-    api: {
-      local: "http://localhost:8782",
-      online: "https://flsjeff.jeffaporta.workers.dev",
-      lsKey: "flsjeff:local",
-      event: "flsjeff:target",
-    },
     theme: { lsKey: "flsjeff:theme" },
     widgets: { targetStyle: "chip" },
     loginGate: {

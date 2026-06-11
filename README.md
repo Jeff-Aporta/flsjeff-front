@@ -26,21 +26,21 @@ Interfaz estática tipo **imgbb** para **subir imágenes y archivos**, explorar 
 - **Drag & drop** o selector de archivos para subir a R2 vía Worker.
 - **Galería** con vista previa de imágenes y metadatos técnicos.
 - **Copiar URL** al portapapeles con un clic.
-- **Tema** dark/light persistido y toggle **local :8782 / online**.
+- **Tema** dark/light persistido y toggle **orquestador local :8780 / producción** (`main-orchestrator.jeffaporta.workers.dev`).
 - Layout **sin scroll en body**: scroll solo en paneles internos.
 
 ## Desarrollo local
 
 ```bash
 npx serve .          # front en http://localhost:3000
-# wrangler dev en flsjeff-back + switch "local" en la barra
+# wrangler dev en langlab/backend (:8780) + workers backend según necesidad
 ```
 
 ## Repos relacionados
 
 | Repo | Rol |
 |------|-----|
-| [flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back) | API + R2 (privado) |
-| [flsjeff-front](https://github.com/Jeff-Aporta/flsjeff-front) | Este panel (público, GH Pages) |
+| [flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back) | API + R2 (Worker; el front llama vía **langlab gateway**) |
+| [flsjeff-front](https://github.com/Jeff-Aporta/flsjeff-front) | Este panel (GH Pages) |
 
 MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
