@@ -6,6 +6,20 @@
 
 <p align="center"><strong>Host de imágenes y archivos</strong> — subida a R2, galería con metadatos y URLs públicas para el ecosistema Jeff-Aporta.</p>
 
+## Arquitectura
+
+```mermaid
+flowchart LR
+  F[flsjeff-front]
+  FS[front-shared]
+  ORCH[main-orchestrator]
+  API[flsjeff Worker]
+  R2[(R2)]
+  F --> FS
+  F -->|POST /api/images| ORCH --> API --> R2
+  F -->|GET /api/raw/*| ORCH
+```
+
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/flsjeff-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![Cloudflare R2](https://img.shields.io/badge/storage-R2-F38020?logo=cloudflare&logoColor=white)](https://www.cloudflare.com/products/r2/)
