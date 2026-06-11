@@ -7,18 +7,9 @@
 <p align="center"><strong>Host de imágenes y archivos</strong> — subida a R2, galería con metadatos y URLs públicas para el ecosistema Jeff-Aporta.</p>
 
 ## Arquitectura
+![Diagrama de arquitectura](https://mermaid.ink/img/JSV7aW5pdDogeyJmbG93Y2hhcnQiOiB7ImN1cnZlIjogInN0ZXBBZnRlciIsICJodG1sTGFiZWxzIjogdHJ1ZSwgIm5vZGVTcGFjaW5nIjogNDQsICJyYW5rU3BhY2luZyI6IDUyLCAicGFkZGluZyI6IDE4fX19JSUKZmxvd2NoYXJ0IExSCiAgRltmbHNqZWZmLWZyb250XQogIEZTW2Zyb250LXNoYXJlZF0KICBPUkNIW21haW4tb3JjaGVzdHJhdG9yXQogIEFQSVtmbHNqZWZmIFdvcmtlcl0KICBSMlsoUjIpXQogIEYgLS0-IEZTCiAgRiAtLT58UE9TVCAvYXBpL2ltYWdlc3wgT1JDSCAtLT4gQVBJIC0tPiBSMgogIEYgLS0-fEdFVCAvYXBpL3Jhdy8qfCBPUkNI)
 
-```mermaid
-flowchart LR
-  F[flsjeff-front]
-  FS[front-shared]
-  ORCH[main-orchestrator]
-  API[flsjeff Worker]
-  R2[(R2)]
-  F --> FS
-  F -->|POST /api/images| ORCH --> API --> R2
-  F -->|GET /api/raw/*| ORCH
-```
+> **Fuente del diagrama:** [`docs/arquitectura.mmd`](docs/arquitectura.mmd) — editar el `.mmd`; regenerar imagen: `node scripts/mermaid-ink-url.mjs flsjeff/frontend/docs/arquitectura.mmd` (desde `apps/`).
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/flsjeff-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)

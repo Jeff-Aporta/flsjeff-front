@@ -1,0 +1,9 @@
+flowchart LR
+  F[flsjeff-front]
+  FS[front-shared]
+  ORCH[main-orchestrator]
+  API[flsjeff Worker]
+  R2[(R2)]
+  F --> FS
+  F -->|POST /api/images| ORCH --> API --> R2
+  F -->|GET /api/raw/*| ORCH
