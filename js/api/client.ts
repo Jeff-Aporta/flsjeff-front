@@ -1,4 +1,4 @@
-/* api/client — flsjeff vía gateway (/api/images, /api/list, /raw/…). */
+/* api/client — flsjeff vía gateway (colecciones REST /api/images, /api/files). */
 
 interface UploadResult { ok: boolean; data?: FlsFileItem; error?: string; }
 
@@ -25,8 +25,9 @@ interface UploadResult { ok: boolean; data?: FlsFileItem; error?: string; }
   }
 
   async function list(kind?: "image" | "file", limit = 60): Promise<FlsFileItem[]> {
-    const qs = "?limit=" + limit + (kind ? "&kind=" + kind : "");
-    const res = await fetch(window.FLS.Config.apiUrl("/api/list" + qs));
+    const collection = kind === "file" ? "files" : "images";
+    const qs = "?limit=" + limit;
+    const res = await fetch(window.FLS.Config.apiUrl("/api/" + collection + qs));
     const data = await res.json().catch(() => null) as { ok?: boolean; error?: string; rows?: FlsFileItem[] } | null;
     if (!res.ok || !data || !data.ok) throw new Error((data && data.error) || ("HTTP " + res.status));
     return (data.rows || []).map(normalizeItem);
