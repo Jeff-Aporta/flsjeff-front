@@ -1,17 +1,15 @@
-# flsjeff-front
+<p align="center">
+  <img src="https://api.iconify.design/mdi/cloud-upload-outline.svg?color=%2300838f&width=96&height=96" width="96" height="96" alt="flsjeff" />
+</p>
 
-Interfaz estática tipo **imgbb** para **subir imágenes y archivos**, explorar la **galería** con metadatos (tamaño, MIME, hash) y **copiar URLs** públicas servidas desde Cloudflare R2. Pensada para adjuntos ligeros en tickets, documentación y otros servicios del ecosistema.
+<h1 align="center">flsjeff-front</h1>
+
+<p align="center"><strong>Host de imágenes y archivos</strong> — subida a R2, galería con metadatos y URLs públicas para el ecosistema Jeff-Aporta.</p>
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-2ea44f?logo=githubpages&logoColor=white)](https://jeff-aporta.github.io/flsjeff-front/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![MUI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui&logoColor=white)](https://mui.com/)
-[![Emotion](https://img.shields.io/badge/Emotion-11-D36AC2)](https://emotion.sh/)
-[![Babel Standalone](https://img.shields.io/badge/Babel%20Standalone-7-F9DC3E?logo=babel&logoColor=black)](https://babeljs.io/)
-[![Cloudflare Workers](https://img.shields.io/badge/API-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)](https://github.com/Jeff-Aporta/flsjeff-back)
 [![Cloudflare R2](https://img.shields.io/badge/storage-R2-F38020?logo=cloudflare&logoColor=white)](https://www.cloudflare.com/products/r2/)
-[![system-login](https://img.shields.io/badge/auth-system--login-007FFF)](https://github.com/Jeff-Aporta/system-login-front)
-[![Sin build](https://img.shields.io/badge/build-sin%20paso%20de%20build-555)](https://github.com/Jeff-Aporta/flsjeff-front)
+[![Cloudflare Workers](https://img.shields.io/badge/API-Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)](https://github.com/Jeff-Aporta/flsjeff-back)
 
 ## Demo
 
@@ -26,21 +24,25 @@ Interfaz estática tipo **imgbb** para **subir imágenes y archivos**, explorar 
 - **Drag & drop** o selector de archivos para subir a R2 vía Worker.
 - **Galería** con vista previa de imágenes y metadatos técnicos.
 - **Copiar URL** al portapapeles con un clic.
-- **Tema** dark/light persistido y toggle **orquestador local :8780 / producción** (`main-orchestrator.jeffaporta.workers.dev`).
+- **Tema** dark/light y toggle **orquestador local / producción**.
 - Layout **sin scroll en body**: scroll solo en paneles internos.
+
+## Metadatos
+
+Icono: `mdi:cloud-upload-outline` · tema `#00838f` · [`JeffAppMeta`](https://github.com/Jeff-Aporta/front-shared/blob/main/cdn/isa/js/core/app-meta.js).
 
 ## Desarrollo local
 
 ```bash
-npx serve .          # front en http://localhost:3000
-# wrangler dev en langlab/backend (:8780) + workers backend según necesidad
+npx serve .
+# wrangler dev en main-orchestrator (:8780) + flsjeff-back según necesidad
 ```
 
 ## Repos relacionados
 
 | Repo | Rol |
 |------|-----|
-| [flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back) | API + R2 (Worker; el front llama vía **langlab gateway**) |
+| [flsjeff-back](https://github.com/Jeff-Aporta/flsjeff-back) | API + R2 (Worker) |
 | [flsjeff-front](https://github.com/Jeff-Aporta/flsjeff-front) | Este panel (GH Pages) |
 
 MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
