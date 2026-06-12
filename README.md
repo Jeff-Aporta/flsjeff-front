@@ -29,7 +29,7 @@
 - **Drag & drop** o selector de archivos para subir a R2 vía Worker.
 - **Galería** con vista previa de imágenes y metadatos técnicos.
 - **Copiar URL** al portapapeles con un clic.
-- **Tema** dark/light y toggle **orquestador local / producción**.
+- **Tema** dark/light y toggle **local / producción** (TargetSwitch).
 - Layout **sin scroll en body**: scroll solo en paneles internos.
 
 ## Metadatos
@@ -40,7 +40,7 @@ Icono: `mdi:cloud-upload-outline` · tema `#00838f` · [`JeffAppMeta`](https://g
 
 ```bash
 npx serve .
-# wrangler dev en main-orchestrator (:8780) + flsjeff-back según necesidad
+# TargetSwitch → modo local + wrangler dev en flsjeff-back según necesidad
 ```
 
 ## Repos relacionados
