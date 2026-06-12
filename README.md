@@ -15,22 +15,16 @@
 
 ## Vista previa
 
-![LoginGate y shell jeffimgbb](./docs/gh-pages.png)
+![Galería y subida de archivos](./docs/gh-pages.png)
 
 ## Qué hace
 
 - **Drag & drop** o selector de archivos para subir imágenes
 - **Galería** con vista previa y metadatos técnicos
 - **Copiar URL** al portapapeles con un clic
-- **Tema** claro/oscuro y modo local o producción
+- **Tema** claro/oscuro
 - Layout **sin scroll en body**: scroll solo en paneles internos
 
 Icono: `mdi:cloud-upload-outline` · tema `#00838f`
-
-## Vista local
-
-```bash
-npx serve .
-```
 
 MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
