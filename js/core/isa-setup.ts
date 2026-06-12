@@ -3,6 +3,7 @@
   "use strict";
   window.ISAFront.registerApp({
     ns: "FLS",
+    app: "flsjeff-front",
     theme: { lsKey: "flsjeff:theme" },
     widgets: { targetStyle: "chip" },
     loginGate: {
