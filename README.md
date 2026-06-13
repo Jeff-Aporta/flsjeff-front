@@ -26,5 +26,3 @@
 - Layout **sin scroll en body**: scroll solo en paneles internos
 
 Icono: `mdi:cloud-upload-outline` · tema `#00838f`
-
-MIT · [Jeff-Aporta](https://github.com/Jeff-Aporta)
