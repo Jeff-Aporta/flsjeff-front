@@ -1,4 +1,4 @@
-/* app/App — jeffimgbb: subir imágenes/archivos y ver la galería con metadatos. */
+/* app/App — flsjeff: subir imágenes/archivos y ver la galería con metadatos. */
 (function () {
   "use strict";
   const MUI = MaterialUI;
