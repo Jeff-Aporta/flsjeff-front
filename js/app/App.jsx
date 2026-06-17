@@ -131,7 +131,7 @@
     );
 
     return (
-      <Shell ns="FLS" title="Archivos e imágenes" icon="mdi:cloud-upload-outline" loginGate toolbarExtra={
+      <Shell ns="FLS" loginGate toolbarExtra={
         <MUI.Tooltip title="Recargar"><MUI.IconButton size="small" color="inherit" onClick={reload}><UI.Icon icon="mdi:refresh" /></MUI.IconButton></MUI.Tooltip>
       }>
         <MUI.Container sx={{ py: 3 }}>{panel}</MUI.Container>
