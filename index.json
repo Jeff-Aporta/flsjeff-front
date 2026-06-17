@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "flsjeff — Imágenes y archivos",
+    "applicationName": "flsjeff",
+    "description": "Subir y consultar imágenes y archivos del ecosistema Jeff-Aporta.",
+    "keywords": "R2, upload, imágenes, archivos, flsjeff, Jeff-Aporta",
+    "themeColor": "#00838f",
+    "themeLsKey": "flsjeff:theme",
+    "icon": "mdi:cloud-upload-outline",
+    "canonical": "https://jeff-aporta.github.io/flsjeff-front/",
+    "ogSiteName": "Jeff-Aporta — flsjeff",
+    "ogTitle": "flsjeff — Imágenes y archivos",
+    "imageAlt": "flsjeff — imágenes y archivos"
+  },
+  "styles": [
+    "fonts-google",
+    "shared-base",
+    "local:css/app.css"
+  ],
+  "libs": []
+}
