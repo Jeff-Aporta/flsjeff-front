@@ -5,7 +5,13 @@
   text-align: center;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
+  &.drag {
+    background: rgba(30, 144, 255, 0.12); border-color: #1e90ff;
+  }
 }
-.dropzone.drag { background: rgba(30, 144, 255, 0.12); border-color: #1e90ff; }
 
-.meta-mono { font-family: Consolas, monospace; font-size: 0.8rem; word-break: break-all; }
+.meta-mono {
+  font-family: Consolas, monospace; font-size: 0.8rem; word-break: break-all;
+}
+
+/* nest-css-max:processed */

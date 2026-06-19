@@ -1,0 +1,1 @@
+(function(){"use strict";window.ISAFront.registerApp({ns:"FLS",app:"flsjeff-front",theme:{lsKey:"flsjeff:theme"},widgets:{targetStyle:"chip"},loginGate:{mode:"redirect",redirectMessage:"Debe iniciar sesi\xF3n con su usuario de la organizaci\xF3n para subir archivos."}})})();
